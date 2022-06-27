@@ -315,6 +315,22 @@ mixin UtilWidgets {
     );
   }
 
+  Widget bannerDiscover(
+      {required String backgroundImg,
+      required String profileImg,
+      required String title,
+      required String disc,
+      required String followerNumber}) {
+    return Container(
+      height: 400,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: shadow,
+      ),
+      child: Column(),
+    );
+  }
+
   // this is special for gradient button
   Widget gradientButton(
       {required List<Color> gradientColors,
@@ -326,6 +342,7 @@ mixin UtilWidgets {
       required Color background,
       required Widget child}) {
     return Container(
+      padding: EdgeInsets.all(thickness),
       height: height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -335,15 +352,12 @@ mixin UtilWidgets {
         ),
         borderRadius: BorderRadius.circular(cornerRadius),
       ),
-      child: Padding(
-        padding: EdgeInsets.all(thickness),
-        child: Container(
-          decoration: BoxDecoration(
-            color: background,
-            borderRadius: BorderRadius.circular(cornerRadius),
-          ),
-          child: child,
+      child: Container(
+        decoration: BoxDecoration(
+          color: background,
+          borderRadius: BorderRadius.circular((cornerRadius - thickness).abs()),
         ),
+        child: child,
       ),
     );
   }
