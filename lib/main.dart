@@ -46,6 +46,7 @@ class _OpenArtState extends State<OpenArt> with UtilWidgets {
         ],
       ),
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 30, bottom: 20),
@@ -125,7 +126,7 @@ class _OpenArtState extends State<OpenArt> with UtilWidgets {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
               children: [
                 linkButton("assets/etherscan.png", "View on Etherscan"),
@@ -135,7 +136,7 @@ class _OpenArtState extends State<OpenArt> with UtilWidgets {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: Container(
               height: 130,
               decoration: boxDecoration(cornerRadius: 30, color: Colors.white),
@@ -144,6 +145,7 @@ class _OpenArtState extends State<OpenArt> with UtilWidgets {
                   Padding(
                     padding: const EdgeInsets.only(left: 15, top: 15),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: const [
                         Text(
                           "Sold for",
@@ -173,7 +175,7 @@ class _OpenArtState extends State<OpenArt> with UtilWidgets {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, top: 15),
+                    padding: const EdgeInsets.only(left: 15, top: 10),
                     child: Row(
                       children: [
                         const Text(
@@ -186,13 +188,128 @@ class _OpenArtState extends State<OpenArt> with UtilWidgets {
                           child: letterTextButton(
                               letter: "D",
                               text: "@david",
-                              gradientStart: 0xff0038F5,
-                              gradientEnd: 0xff9F03FF),
+                              gradientStart: gradientBlueStart,
+                              gradientEnd: gradientBlueEnd),
                         ),
                       ],
                     ),
                   ),
                 ],
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(
+              left: 20,
+              right: 20,
+              bottom: 20,
+            ),
+            child: Text(
+              "Activity",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Column(
+              children: [
+                linkLongButton(
+                  title: "Auction won by David",
+                  disc: "June 04, 2021 at 12:00am",
+                  textSold: "1.50 ETH",
+                  letter: "D",
+                  imgProfile: "assets/circleProfile.png",
+                  price: "",
+                ),
+                linkLongButton(
+                  title: "Bid place by @pawel09",
+                  disc: "June 06, 2021 at 12:00am",
+                  textSold: "1.50 ETH",
+                  price: "2,683.73",
+                  letter: "",
+                  imgProfile: "assets/circleProfile.png",
+                ),
+                linkLongButton(
+                  title: "Listing by @han152",
+                  disc: "June 04, 2021 at 12:00am",
+                  textSold: "1.00 ETH",
+                  price: "2,683.73",
+                  letter: "",
+                  imgProfile: "assets/circleProfile.png",
+                ),
+              ],
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 40),
+            child: Image(
+              image: AssetImage("assets/logoOpen.png"),
+              height: 50,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  "The",
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w200),
+                ),
+                Text(
+                  "New",
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w300),
+                ),
+                Text(
+                  "Creativity",
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  "Economy",
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+            child: GestureDetector(
+              onTap: () {
+                print("object");
+              },
+              onLongPress: () {
+                print("object");
+              },
+              child: filledButton("Earn now"),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            child: gradientButton(
+              gradientColors: [
+                Color(gradientBlueStart),
+                Color(gradientBlueEnd)
+              ],
+              gradientStops: [0.2, 0.9],
+              gradientRadian: 45,
+              cornerRadius: 15,
+              height: 70,
+              thickness: 2,
+              background: Colors.white,
+              child: Center(
+                child: GradientText(
+                  "Discover more",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                    color: Color(gradientBlueStart),
+                  ),
+                  gradient: LinearGradient(colors: [
+                    Color(gradientBlueStart),
+                    Color(gradientBlueEnd)
+                  ]),
+                ),
               ),
             ),
           ),
