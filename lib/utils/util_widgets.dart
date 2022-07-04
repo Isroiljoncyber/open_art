@@ -289,6 +289,7 @@ mixin UtilWidgets {
     }
   }
 
+  // Filled button
   Widget filledButton(String title) {
     return Container(
       height: 70,
@@ -321,14 +322,166 @@ mixin UtilWidgets {
       required String title,
       required String disc,
       required String followerNumber}) {
-    return Container(
-      height: 400,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: shadow,
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Container(
+        height: 400,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+                color: const Color(0xff000000).withOpacity(0.07),
+                offset: const Offset(0, 81),
+                blurRadius: 106),
+            BoxShadow(
+                color: const Color(0xff000000).withOpacity(0.029),
+                offset: const Offset(0, 10),
+                blurRadius: 13),
+          ],
+        ),
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Image(
+                  image: AssetImage(backgroundImg),
+                  fit: BoxFit.fitHeight,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 60),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      color: textBlack,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
+                  child: Text(
+                    disc,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: textBlackDisc,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            followerNumber,
+                            style: TextStyle(
+                              color: textBlack,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 8, bottom: 4),
+                            child: Text(
+                              "Followers",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xff555555),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 30),
+                        child: circleButton(
+                          background: Colors.white,
+                          height: 40,
+                          cornerRadius: 8,
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 30),
+                            child: Text(
+                              "Follow",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  letterSpacing: 1,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 90),
+              child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 5, color: Colors.white),
+                  image: DecorationImage(
+                    image: AssetImage(profileImg),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-      child: Column(),
     );
+  }
+
+  Widget circleButton(
+      {Color? background,
+      List<Color>? gradientColors,
+      required Widget child,
+      required double height,
+      required double cornerRadius}) {
+    return Container(
+      height: height,
+      decoration: gradientDecoration(
+          cornerRadius: cornerRadius,
+          gradient: gradientColors,
+          background: background),
+      child: Center(
+        child: child,
+      ),
+    );
+  }
+
+  BoxDecoration gradientDecoration(
+      {List<Color>? gradient,
+      Color? background,
+      required double cornerRadius}) {
+    if (gradient != null) {
+      return BoxDecoration(
+          gradient: LinearGradient(
+            colors: gradient,
+            stops: const [0.1, 0.8],
+            transform: const GradientRotation(45),
+          ),
+          borderRadius: BorderRadius.circular(
+            cornerRadius,
+          ),
+          boxShadow: shadow);
+    } else {
+      return BoxDecoration(
+        boxShadow: shadow,
+        borderRadius: BorderRadius.circular(cornerRadius),
+        color: background,
+      );
+    }
   }
 
   // this is special for gradient button
