@@ -5,7 +5,9 @@ import 'package:open_art/utils/util_widgets.dart';
 import '../utils/constants.dart';
 
 class OpenArtDiscover extends StatefulWidget {
-  const OpenArtDiscover({Key? key}) : super(key: key);
+  final String title;
+
+  const OpenArtDiscover(this.title, {Key? key}) : super(key: key);
 
   @override
   State<OpenArtDiscover> createState() => _OpenArtDiscoverState();
@@ -54,12 +56,12 @@ class _OpenArtDiscoverState extends State<OpenArtDiscover> with UtilWidgets {
             padding: const EdgeInsets.only(top: 15, bottom: 50),
             child: Center(
               child: Column(
-                children: const [
+                children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      "Discover creator",
-                      style: TextStyle(
+                      widget.title,
+                      style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w600,
                       ),
@@ -229,28 +231,33 @@ class _OpenArtDiscoverState extends State<OpenArtDiscover> with UtilWidgets {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 30),
-            child: gradientButton(
-              gradientColors: [
-                Color(gradientBlueStart),
-                Color(gradientBlueEnd)
-              ],
-              gradientStops: [0.2, 0.9],
-              cornerRadius: 15,
-              height: 80,
-              thickness: 3,
-              background: Colors.white,
-              child: Center(
-                child: GradientText(
-                  "Discover more",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                    color: Color(gradientBlueStart),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context, "New Pop");
+              },
+              child: gradientButton(
+                gradientColors: [
+                  Color(gradientBlueStart),
+                  Color(gradientBlueEnd)
+                ],
+                gradientStops: [0.2, 0.9],
+                cornerRadius: 15,
+                height: 80,
+                thickness: 3,
+                background: Colors.white,
+                child: Center(
+                  child: GradientText(
+                    "Discover more",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      color: Color(gradientBlueStart),
+                    ),
+                    gradient: LinearGradient(colors: [
+                      Color(gradientBlueStart),
+                      Color(gradientBlueEnd)
+                    ]),
                   ),
-                  gradient: LinearGradient(colors: [
-                    Color(gradientBlueStart),
-                    Color(gradientBlueEnd)
-                  ]),
                 ),
               ),
             ),

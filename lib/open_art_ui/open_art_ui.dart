@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:open_art/open_art_ui/open_art_discover_ui.dart';
+import 'package:open_art/utils/routes.dart';
 import '../utils/constants.dart';
 import '../utils/util_widgets.dart';
 
@@ -11,6 +13,8 @@ class OpenArt extends StatefulWidget {
 }
 
 class _OpenArtState extends State<OpenArt> with UtilWidgets {
+  String button = "Earn More";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -272,33 +276,50 @@ class _OpenArtState extends State<OpenArt> with UtilWidgets {
               onLongPress: () {
                 print("object");
               },
-              child: filledButton("Earn now"),
+              child: filledButton(button),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-            child: gradientButton(
-              gradientColors: [
-                Color(gradientBlueStart),
-                Color(gradientBlueEnd)
-              ],
-              gradientStops: [0.2, 0.9],
-              cornerRadius: 15,
-              height: 80,
-              thickness: 3,
-              background: Colors.white,
-              child: Center(
-                child: GradientText(
-                  "Discover more",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                    color: Color(gradientBlueStart),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, Routes.discoverPage,
+                  arguments: {'title': "Isroiljon"}).then(
+                (value) => {
+                  if (value is String)
+                    {
+                      setState(
+                        () {
+                          button = value;
+                        },
+                      ),
+                    },
+                },
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              child: gradientButton(
+                gradientColors: [
+                  Color(gradientBlueStart),
+                  Color(gradientBlueEnd)
+                ],
+                gradientStops: [0.2, 0.9],
+                cornerRadius: 15,
+                height: 80,
+                thickness: 3,
+                background: Colors.white,
+                child: Center(
+                  child: GradientText(
+                    "Discover more",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      color: Color(gradientBlueStart),
+                    ),
+                    gradient: LinearGradient(colors: [
+                      Color(gradientBlueStart),
+                      Color(gradientBlueEnd)
+                    ]),
                   ),
-                  gradient: LinearGradient(colors: [
-                    Color(gradientBlueStart),
-                    Color(gradientBlueEnd)
-                  ]),
                 ),
               ),
             ),
